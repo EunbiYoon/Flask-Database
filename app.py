@@ -4,6 +4,7 @@ import smtplib
 from flask_sqlalchemy import SQLAlchemy
 from random import randint
 from flask_mysqldb import MySQL 
+import psycopg2
 
 #forms.py
 from flask_wtf import FlaskForm
@@ -102,16 +103,18 @@ def hello_world():
         # #SEND Information to SQLite
 
 
-        #3- send information into mysql
-        cur=mysql.connection.cursor()
-        cur.execute('''
-            INSERT INTO clients(clientid, clientname, clientemail, clientmessage)
-            VALUES(%s,%s,%s,%s);
-        ''', (randint(0,1000000),name,email,message))
-        mysql.connection.commit() #before closing this
-        cur.close()
+        # #3- send information into mysql
+        # cur=mysql.connection.cursor()
+        # cur.execute('''
+        #     INSERT INTO clients(clientid, clientname, clientemail, clientmessage)
+        #     VALUES(%s,%s,%s,%s);
+        # ''', (randint(0,1000000),name,email,message))
+        # mysql.connection.commit() #before closing this
+        # cur.close()
 
 
+        #4- postgresql 
+        
                 
         print(name,email,message)
         form.name.data, form.email.data, form.message.data="","",""
